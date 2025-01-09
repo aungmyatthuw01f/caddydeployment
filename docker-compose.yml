@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+  caddy:
+    image: caddy
+    container_name: caddy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    environment:
+      - ADMIN_USER=admin
+      - ADMIN_PASSWORD=your_admin_password
+    restart: unless-stopped
+
+  webapp:
+    image: nginx
+    container_name: webapp
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+
+volumes:
+  caddy_data:
+  caddy_config:

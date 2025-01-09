@@ -1,0 +1,11 @@
+{
+    email aungmyatthu@hexcode.tech
+}
+
+your-domain.com {
+    basicauth /admin/* {
+        {$ADMIN_USER} {$ADMIN_PASSWORD_HASH}
+    }
+    reverse_proxy /admin/* webapp:80
+    reverse_proxy webapp:80
+}
